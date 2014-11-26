@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/jquery.ui.all.css")
+</head>
+<body>
+    <div class="app-container">
+        <div class="app">
+            <div class="header-actions">
+                <h2>Cart Cleaner</h2>
+            </div>
+            <div class="tab-container">
+                <div style="margin-left:-15px;position:absolute;z-index: 10; width: 100%; height: 92%; background-color: rgba(255,255,255,.5);" id="progressIndicator">
+                    <div class="loadingicon"></div>
+                </div>
+                <div class="tabs">
+                    <ul>
+                        <li class="@Html.ActivePage("Home", "Index")">@Html.ActionLink("Info", "Index", "Home")</li>
+                        <li class="@Html.ActivePage("Home", "ConfigRule")">@Html.ActionLink("Configure Rule", "ConfigRule", "Home")</li>
+                        <li class="@Html.ActivePage("Home", "ViewRule")">@Html.ActionLink("View Rule", "ViewRule", "Home")</li>
+                        <li class="@Html.ActivePage("Home", "ViewOrder")">@Html.ActionLink("View Order", "ViewOrder", "Home")</li>
+                        <li class="@Html.ActivePage("Home", "ViewHistory")">@Html.ActionLink("View History", "ViewHistory", "Home")</li>
+                    </ul>
+                </div>
+
+                <div class="tab-view">
+                    <div class="tab-section">
+                        @RenderBody()
+                    </div>
+                </div>
+                <div class="branding-text">Developed by Volusion, Inc. All rights reserved.</div>
+                @Html.Hidden("cookieToken", (Object)ViewBag.cookieToken)
+                @Html.Hidden("formToken", (Object)ViewBag.formToken)
+            </div>
+        </div>
+        </div>
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/knockout")
+        @RenderSection("scripts", required: false)
+</body>
+</html>
